@@ -80,7 +80,12 @@ export class UsersService {
     }
 
     async findUsersWithSameParentCategory(categoryName: string, userName: string) {
+        console.log("categoryName", categoryName, userName);
         // Fetch the parent category
+
+        if (!categoryName || !userName) {
+            throw new HttpException("Category Name is required", HttpStatus.BAD_REQUEST);
+        }
         const parentCategory = await this.prismaService.category.findFirst({
             where: {
                 name: {
