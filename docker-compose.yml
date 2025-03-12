@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+# docker run --name my_pg -e POSTGRES_USER=nitin -e POSTGRES_PASSWORD=test -e POSTGRES_DB=momento -p 5432:5432 -d postgres
+  postgres:
+    image: postgres
+    container_name: my_pg
+    environment:
+      POSTGRES_USER: nitin
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: momento
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # docker run --network nitin_default --name jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins
+
+  jenkins:
+    image: jenkins/jenkins
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+    

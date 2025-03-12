@@ -18,20 +18,16 @@ COPY . .
 ENV DATABASE_URL="postgresql://nitin:test@my_pg/momento"
 # ENV DATABASE_URL="postgresql://momento_owner:dhr7AqwMF3ln@ep-restless-king-a58abduj.us-east-2.aws.neon.tech/momento?sslmode=require"
 
-# Generate Prisma Client
-RUN npx prisma generate
-
-# migrate the database
-RUN npx prisma migrate dev 
-
-# Build the application
-RUN npm run build
+# # Generate Prisma Client
+# RUN npx prisma generate && \
+# 	npx prisma migrate dev && \
+# 	npm run build
 
 # Expose the application port
 EXPOSE 3000
 
 # Start the application
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "src/main.js"]
 
 
 
